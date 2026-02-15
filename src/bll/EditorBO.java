@@ -71,7 +71,8 @@ public class EditorBO implements IEditorBO {
 			}
 			reader.close();
 
-			if (fileExtension.equalsIgnoreCase("txt") || fileExtension.equalsIgnoreCase("md5")) {
+			// BUG FIX: Changed "md5" to "md" for markdown files
+			if (fileExtension.equalsIgnoreCase("txt") || fileExtension.equalsIgnoreCase("md")) {
 				return db.createFileInDB(fileName, fileContent.toString());
 			}
 		} catch (Exception e) {

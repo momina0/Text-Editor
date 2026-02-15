@@ -7,26 +7,29 @@ import dto.Pages;
 
 public class PaginationDAO {
 
-	
-	static List<Pages> paginate(String fileContent){
+	/**
+	 * Paginates file content into pages of 100 characters each.
+	 * 
+	 * @param fileContent The content to paginate
+	 * @return List of Pages objects containing paginated content
+	 */
+	public static List<Pages> paginate(String fileContent) {
 		int pageSize = 100;
 		int pageNumber = 1;
 		String pageContent = "";
 		List<Pages> pages = new ArrayList<Pages>();
-		if(fileContent==null || fileContent.isEmpty())
-		{
+		if (fileContent == null || fileContent.isEmpty()) {
 			pages.add(new Pages(0, 0, pageNumber, pageContent.toString()));
 			return pages;
 		}
-		for(int i = 0; i < fileContent.length(); i++)
-		{
+		for (int i = 0; i < fileContent.length(); i++) {
 			pageContent += fileContent.charAt(i);
-			if (pageContent.length() == pageSize || i == fileContent.length() - 1){
+			if (pageContent.length() == pageSize || i == fileContent.length() - 1) {
 				pages.add(new Pages(0, 0, pageNumber, pageContent));
 				pageNumber++;
 				pageContent = "";
 			}
 		}
 		return pages;
-	} 
+	}
 }
